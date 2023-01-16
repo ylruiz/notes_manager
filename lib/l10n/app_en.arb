@@ -1,0 +1,8 @@
+{
+  "appTitle": "Notes Manager",
+  "myNotes": "My Notes",
+  "note": "Note",
+  "useLocalMemory": "Use local memory",
+  "useRemoteApi": "Use remote API",
+  "gotIt": "Got it"
+}
