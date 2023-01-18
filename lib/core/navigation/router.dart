@@ -5,6 +5,14 @@ import '../../features/notes/presentation/screens/my_notes.dart';
 import '../../features/notes/presentation/screens/note_details.dart';
 import 'paths.dart';
 
+/// Router that should be used in the routerConfig field of
+/// the MaterialApp.router of our app.
+///
+/// ```dart
+///   ...
+///   routerConfig: router(),
+///   ...
+/// ```
 GoRouter router({String initialLocation = Paths.myNotes}) => GoRouter(
       initialLocation: initialLocation,
       routes: <GoRoute>[

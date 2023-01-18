@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+/// Possible types of [SharedPrefException].
 enum SharedPrefExceptionType {
   unableToGetInstance,
   unableToReadData,
@@ -7,6 +8,9 @@ enum SharedPrefExceptionType {
   unableToDeleteData,
 }
 
+/// Exception that should be thrown when something goes wrong
+/// while trying to access, read, save or delete from the local
+/// memeory.
 class SharedPrefException extends Equatable {
   const SharedPrefException.unableToGetInstance()
       : type = SharedPrefExceptionType.unableToGetInstance;

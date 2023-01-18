@@ -23,7 +23,7 @@ class ApiManager {
       return await _sendResponse(response);
     } catch (error) {
       return const Left(ApiConnectionException(
-        errorType: ApiConnectionErrorType.noInternet,
+        errorType: ApiConnectionExceptionType.noInternet,
         statusCode: -1,
         statusMessage: '',
       ));
@@ -41,7 +41,7 @@ class ApiManager {
       return await _sendResponse(response);
     } catch (error) {
       return const Left(ApiConnectionException(
-        errorType: ApiConnectionErrorType.noInternet,
+        errorType: ApiConnectionExceptionType.noInternet,
         statusCode: -1,
         statusMessage: '',
       ));
@@ -55,7 +55,7 @@ class ApiManager {
       return await _sendResponse(response);
     } catch (error) {
       return const Left(ApiConnectionException(
-        errorType: ApiConnectionErrorType.noInternet,
+        errorType: ApiConnectionExceptionType.noInternet,
         statusCode: -1,
         statusMessage: '',
       ));
@@ -73,7 +73,7 @@ class ApiManager {
       return await _sendResponse(response);
     } catch (error) {
       return const Left(ApiConnectionException(
-        errorType: ApiConnectionErrorType.noInternet,
+        errorType: ApiConnectionExceptionType.noInternet,
         statusCode: -1,
         statusMessage: '',
       ));
@@ -91,7 +91,7 @@ class ApiManager {
           ? Right(response)
           : Left(
               ApiConnectionException(
-                errorType: _getApiConnectionErrorType(statusCode),
+                errorType: _getApiConnectionExceptionType(statusCode),
                 statusCode: statusCode,
                 statusMessage: statusstatusMessage,
               ),
@@ -100,7 +100,7 @@ class ApiManager {
 
     return const Left(
       ApiConnectionException(
-        errorType: ApiConnectionErrorType.undefinedError,
+        errorType: ApiConnectionExceptionType.undefinedError,
         statusCode: -1,
         statusMessage: '',
       ),
@@ -111,19 +111,19 @@ class ApiManager {
     return statusCode >= 200 && statusCode < 300;
   }
 
-  ApiConnectionErrorType _getApiConnectionErrorType(int statusCode) {
+  ApiConnectionExceptionType _getApiConnectionExceptionType(int statusCode) {
     if (statusCode >= 300 && statusCode < 399) {
-      return ApiConnectionErrorType.redirection;
+      return ApiConnectionExceptionType.redirection;
     }
 
     if (statusCode >= 400 && statusCode < 499) {
-      return ApiConnectionErrorType.clientError;
+      return ApiConnectionExceptionType.clientError;
     }
 
     if (statusCode >= 500 && statusCode < 599) {
-      return ApiConnectionErrorType.serverError;
+      return ApiConnectionExceptionType.serverError;
     }
 
-    return ApiConnectionErrorType.undefinedError;
+    return ApiConnectionExceptionType.undefinedError;
   }
 }

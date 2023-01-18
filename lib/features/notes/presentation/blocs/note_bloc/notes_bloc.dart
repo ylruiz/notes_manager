@@ -10,6 +10,12 @@ import '../feedback_cubit/feedback_cubit.dart';
 part 'notes_event.dart';
 part 'notes_state.dart';
 
+/// Handles the state of the notes by receiving events from
+/// the respective widget and getting the respective information using
+/// the repositories.
+///
+/// As a result it updates the state of the notes which is used to update
+/// the UI accordingly.
 class NotesBloc extends Bloc<NotesEvent, NotesState> {
   NotesBloc() : super(const NotesState()) {
     on<LoadNotes>((event, emit) async {

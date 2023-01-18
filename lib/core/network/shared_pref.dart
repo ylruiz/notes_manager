@@ -33,7 +33,7 @@ abstract class SharedPref {
     return loadedInstance.fold(
       (error) => const Left(SharedPrefException.unableToGetInstance()),
       (prefs) async {
-        try { 
+        try {
           final saved = await prefs.setString(key, json.encode(value));
           return Right(saved);
         } catch (error) {

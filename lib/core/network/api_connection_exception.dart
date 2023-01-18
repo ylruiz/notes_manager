@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-enum ApiConnectionErrorType {
+/// Possible types of [ApiConnectionError].
+enum ApiConnectionExceptionType {
   none,
   noInternet,
   redirection,
@@ -18,7 +19,7 @@ class ApiConnectionException extends Equatable implements Exception {
     required this.statusMessage,
   });
 
-  final ApiConnectionErrorType errorType;
+  final ApiConnectionExceptionType errorType;
   final int statusCode;
   final String statusMessage;
 
