@@ -62,11 +62,14 @@ class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
                 children: [
                   TextFormField(
                     controller: _titleController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Title',
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      labelText: loca.title,
                     ),
-                    validator: _titleNotWhitespace,
+                    validator: (value) => _titleNotWhitespace(
+                      value,
+                      loca.titleNoEmpty,
+                    ),
                     onFieldSubmitted: _setTitleControllerValue,
                   ),
                   Padding(
@@ -78,10 +81,13 @@ class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
                       maxLines: 10,
                       decoration: InputDecoration(
                         border: const OutlineInputBorder(),
-                        labelText: 'Enter markdown text here...',
+                        labelText: loca.markdown,
                         hintText: _description,
                       ),
-                      validator: _descNotWhitespace,
+                      validator: (value) => _descNotWhitespace(
+                        value,
+                        loca.descNotEmpty,
+                      ),
                       onChanged: _setDescValue,
                       onFieldSubmitted: _setDescriptionControllerValue,
                     ),
@@ -100,13 +106,15 @@ class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
                         Padding(
                           padding: const EdgeInsets.only(right: 10),
                           child: ElevatedButton(
-                            onPressed: _deleteNote,
-                            child: const Text('Delete Note'),
+                            onPressed: () => _deleteNote(
+                              loca.deletedFeedbackMessage(widget.note!.title),
+                            ),
+                            child: Text(loca.delete),
                           ),
                         ),
                       ElevatedButton(
-                        onPressed: _saveNote,
-                        child: const Text('Save Note'),
+                        onPressed: () => _saveNote(loca),
+                        child: Text(loca.save),
                       ),
                     ],
                   )
@@ -119,16 +127,18 @@ class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
     );
   }
 
-  static String? _titleNotWhitespace(String? value) {
-    return value.isNullOrWhitespace()
-        ? 'Please, verify the title is not empty.'
-        : null;
+  static String? _titleNotWhitespace(
+    String? value,
+    String validationMessage,
+  ) {
+    return value.isNullOrWhitespace() ? validationMessage : null;
   }
 
-  static String? _descNotWhitespace(String? value) {
-    return value.isNullOrWhitespace()
-        ? 'Please, verify the description is not empty.'
-        : null;
+  static String? _descNotWhitespace(
+    String? value,
+    String validationMessage,
+  ) {
+    return value.isNullOrWhitespace() ? validationMessage : null;
   }
 
   void _setTitleControllerValue(String value) {
@@ -143,7 +153,7 @@ class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
     setState(() => _description = value);
   }
 
-  void _saveNote() {
+  void _saveNote(AppLocalizations loca) {
     if (_formKey.currentState?.validate() ?? true) {
       final note = widget.note;
       final title = _titleController.text;
@@ -153,7 +163,7 @@ class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
           CreateNote(
             title: title,
             description: desc,
-            feedbackMessage: 'You have created a new note successfully',
+            feedbackMessage: loca.savedNoteFeedback,
           ),
         );
       } else {
@@ -165,7 +175,7 @@ class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
         sl<NotesBloc>().add(
           UpdateNote(
             updatedNote: updatedNote,
-            feedbackMessage: 'You have updated the note $title successfully',
+            feedbackMessage: loca.updatedNoteFeedback(title),
           ),
         );
       }
@@ -173,13 +183,13 @@ class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
     }
   }
 
-  void _deleteNote() {
+  void _deleteNote(String feedbackMessage) {
     final note = widget.note;
     assert(note != null, 'Trying to delete note using a null note');
     sl<NotesBloc>().add(
       DeleteOneNote(
         noteId: note!.id,
-        feedbackMessage: 'You have deleted the note with title ${note.title}',
+        feedbackMessage: feedbackMessage,
       ),
     );
     context.pop();

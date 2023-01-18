@@ -4,5 +4,30 @@
   "note": "Note",
   "useLocalMemory": "Use local memory",
   "useRemoteApi": "Use remote API",
-  "gotIt": "Got it"
+  "gotIt": "Got it",
+  "markdown": "Enter markdown text here...",
+  "descNotEmpty": "Please, verify the description is not empty.",
+  "title": "Title",
+  "titleNoEmpty": "Please, verify the title is not empty.",
+  "delete": "Delete Note",
+  "save": "Save Note",
+  "savedNoteFeedback": "You have created a new note successfully",
+  "updatedNoteFeedback": "You have updated the note {title} successfully",
+  "@updatedNoteFeedback": {
+    "placeholders": {
+      "title": {
+        "type": "String",
+        "example": "example"
+      }
+    }
+  },
+  "deletedFeedbackMessage": "You have deleted the note with title ${title}",
+  "@deletedFeedbackMessage": {
+    "placeholders": {
+      "title": {
+        "type": "String",
+        "example": "example"
+      }
+    }
+  }
 }
