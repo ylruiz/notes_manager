@@ -8,7 +8,7 @@ import '../../../../core/injection/injection.dart';
 import '../../../../core/navigation/paths.dart';
 import '../../models/note_model.dart';
 import '../blocs/feedback_cubit/feedback_cubit.dart';
-import '../blocs/note_bloc/notes_bloc.dart';
+import '../blocs/notes_bloc/notes_bloc.dart';
 
 part '../widgets/local_memory_filter_chip.dart';
 part '../widgets/my_notes_body.dart';

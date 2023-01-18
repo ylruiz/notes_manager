@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/extensions/string_extension.dart';
 import '../../../../core/injection/injection.dart';
 import '../../models/note_model.dart';
-import '../blocs/note_bloc/notes_bloc.dart';
+import '../blocs/notes_bloc/notes_bloc.dart';
 
 class NoteDetailsScreen extends StatefulWidget {
   const NoteDetailsScreen({

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../features/notes/presentation/blocs/feedback_cubit/feedback_cubit.dart';
-import '../../features/notes/presentation/blocs/note_bloc/notes_bloc.dart';
+import '../../features/notes/presentation/blocs/notes_bloc/notes_bloc.dart';
 import '../../features/notes/repositories/local.dart';
 import '../../features/notes/repositories/remote.dart';
 import '../network/api_manager.dart';

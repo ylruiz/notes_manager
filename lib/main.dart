@@ -5,7 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'core/injection/injection.dart';
 import 'core/navigation/router.dart';
 import 'features/notes/presentation/blocs/feedback_cubit/feedback_cubit.dart';
-import 'features/notes/presentation/blocs/note_bloc/notes_bloc.dart';
+import 'features/notes/presentation/blocs/notes_bloc/notes_bloc.dart';
 
 void main() async {
   await setUpServiceLocator();
