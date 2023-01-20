@@ -44,28 +44,9 @@ class _MyNotesBody extends StatelessWidget {
                         ],
                       ),
                     )
-                  : Stack(
-                      children: [
-                        Column(
-                          children: [
-                            const _SearchInput(),
-                            Expanded(child: _NoteList(notes: state.notes)),
-                          ],
-                        ),
-                        Positioned(
-                          right: 10,
-                          bottom: 10,
-                          child: ElevatedButton(
-                            onPressed: () => _goToNoteDetailsScreen(context),
-                            style: ElevatedButton.styleFrom(
-                              shape: const CircleBorder(),
-                              padding: const EdgeInsets.all(10),
-                            ),
-                            child: const Icon(Icons.add, color: Colors.white),
-                          ),
-                        ),
-                      ],
-                    );
+                  : _NoteList(notes: state.notes);
+            case LoadedState.searched:
+              return _NoteList(notes: state.notes);
             case LoadedState.error:
               return const Text('Some error happened');
           }

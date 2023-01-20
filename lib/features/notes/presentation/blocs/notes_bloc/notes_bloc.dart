@@ -90,11 +90,14 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         sl<FeedbackCubit>().showFailureFeedback(error.type.name);
         return state.copyWith(loadedState: LoadedState.error);
       },
-      (loadedNotes) => state.copyWith(
-        loadedState: LoadedState.loaded,
-        notes: loadedNotes,
-        searchTag: searchTag,
-      ),
+      (loadedNotes) {
+        return state.copyWith(
+          loadedState:
+              searchTag.isEmpty ? LoadedState.loaded : LoadedState.searched,
+          notes: loadedNotes,
+          searchTag: searchTag,
+        );
+      },
     );
   }
 

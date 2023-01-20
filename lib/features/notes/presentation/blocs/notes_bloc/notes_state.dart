@@ -4,6 +4,7 @@ enum LoadedState {
   initial,
   loading,
   loaded,
+  searched,
   error,
 }
 
